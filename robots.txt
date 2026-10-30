@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /catalogo-pdf.html
+
+Sitemap: https://jagumasa.es/sitemap.xml

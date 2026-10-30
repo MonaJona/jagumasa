@@ -1,0 +1,53 @@
+/* Páginas individuales de vino (generadas por herramientas/generar_seo.py) */
+:root { --burdeos: #3E0912; --noche: #1D0A0D; --crema: #EDE5D8; --papel: #F6F2EB; --granate: #7A1E2C; --corcho: #A8804F; --tinta: #2B2426; --gris: #6F6462; --linea: #DDD2C2;
+  --display: "Spectral SC", Georgia, serif; --serif: "Spectral", Georgia, serif; --sans: "Jost", "Century Gothic", Arial, sans-serif; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--papel); color: var(--tinta); font-family: var(--serif); font-weight: 300; font-size: 17px; line-height: 1.7; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--granate); outline-offset: 3px; }
+.wrap { max-width: 1100px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.lbl { font-family: var(--sans); font-weight: 500; font-size: 12px; letter-spacing: .26em; text-transform: uppercase; color: var(--granate); }
+.region { font-style: italic; color: var(--corcho); font-size: 15px; }
+.top { border-bottom: 1px solid var(--linea); background: var(--papel); }
+.top .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 72px; }
+.top .brand img { height: 58px; width: auto; }
+.back { font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; color: var(--burdeos); }
+.back.r { justify-self: end; }
+.crumbs { font-size: 14px; color: var(--gris); padding-block: 20px 4px; }
+.crumbs a { color: var(--gris); }
+.ficha { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 56px; padding-block: 24px 64px; align-items: start; }
+.ficha .pic { background: var(--crema); display: grid; place-items: center; padding: 40px 24px; min-height: 480px; }
+.ficha .pic img { max-height: 520px; max-width: 240px; mix-blend-mode: multiply; }
+.ficha .txt { display: grid; gap: 14px; min-width: 0; }
+h1, h2 { font-family: var(--display); font-weight: 300; letter-spacing: .07em; line-height: 1.15; margin: 0; color: var(--burdeos); text-wrap: balance; }
+h1 { font-size: clamp(32px, 4.6vw, 48px); }
+.desc { font-size: 19px; margin: 6px 0 0; max-width: 60ch; }
+dl { margin: 10px 0 0; display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 8px 16px; border-top: 1px solid var(--linea); padding-top: 16px; font-size: 16px; }
+dt { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--gris); padding-top: 4px; }
+dd { margin: 0; }
+.acts { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--burdeos); background: var(--burdeos); color: var(--crema); font-family: var(--sans); font-weight: 500; font-size: 12.5px; letter-spacing: .2em; text-transform: uppercase; padding: 14px 24px; text-decoration: none; }
+.btn:hover { background: var(--noche); }
+.btn.ghost { background: transparent; color: var(--burdeos); }
+.btn.ghost:hover { background: var(--burdeos); color: var(--crema); }
+.note { font-size: 15px; color: var(--gris); font-style: italic; max-width: 60ch; margin: 6px 0 0; }
+.rel { border-top: 1px solid var(--burdeos); padding-block: 28px 72px; }
+.rel h2 { font-size: 28px; margin-bottom: 24px; }
+.relgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 28px 16px; }
+.relgrid a { display: grid; justify-items: center; text-align: center; gap: 6px; text-decoration: none; }
+.relgrid img { height: 200px; width: auto; max-width: 110px; object-fit: contain; mix-blend-mode: multiply; }
+.relgrid b { font-family: var(--display); font-weight: 400; font-size: 17px; letter-spacing: .05em; line-height: 1.2; }
+.relgrid a:hover b { color: var(--burdeos); }
+.foot { background: var(--noche); color: #CDB79C; font-size: 15px; }
+.foot .wrap { display: flex; flex-wrap: wrap; gap: 24px 48px; align-items: center; padding-block: 40px; }
+.foot b { color: var(--crema); font-weight: 400; }
+@media (max-width: 760px) {
+  .ficha { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .ficha .pic { min-height: 0; padding: 28px; }
+  .ficha .pic img { max-height: 340px; }
+  dl { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  dd { margin-bottom: 8px; }
+  .top .brand img { height: 46px; }
+  .back { font-size: 11px; letter-spacing: .14em; }
+}
