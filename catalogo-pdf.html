@@ -125,7 +125,7 @@ for (const t of plan) {
 
 html += `<section class="page contact"><img class="seal" src="img/sello-burdeos.png" alt=""><div class="lbl">Contacto</div><h2>Hablemos de vino</h2>
 <p>Le asesoramos para elegir las referencias que mejor encajan con su carta o su tienda, y le preparamos tarifa y condiciones sin compromiso.</p>
-<div class="grid"><div class="c"><b>Teléfono y WhatsApp</b><span>${esc(C.telefono)}</span></div><div class="c"><b>Correo</b><span>${esc(C.email)}</span></div></div>
+<div class="grid"><div class="c"><b>Teléfono y WhatsApp</b><span>${esc(C.telefono)}</span></div><div class="c"><b>Correo</b><span>${esc(C.email)}</span></div><div class="c"><b>Dirección</b><span>${esc(C.direccion)}<br>${esc(C.ciudad)}</span></div></div>
 <p class="note">${esc(C.zona)}.</p>${folio()}</section>`;
 
 document.getElementById("root").innerHTML = html;

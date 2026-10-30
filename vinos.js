@@ -7,6 +7,8 @@ window.CONTACTO = {
   telefono: "692 552 976",
   whatsapp: "34692552976",       // solo dígitos, con prefijo de país
   email: "jagumasa@hotmail.com",
+  direccion: "Calle Estudiantes, 20",
+  ciudad: "Santander, Cantabria",
   zona: "Distribución a hostelería, tiendas y particulares"
 };
 window.TIPOS = [

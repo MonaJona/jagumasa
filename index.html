@@ -149,6 +149,9 @@ dialog::backdrop { background: rgba(29,10,13,.6); }
 .contact .item { display: grid; gap: 2px; padding-bottom: 16px; border-bottom: 1px solid var(--linea); }
 .contact .item .v { font-size: 21px; color: var(--burdeos); user-select: all; }
 .contact .item a.v { text-decoration: none; }
+.maplink { font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--granate); margin-top: 6px; text-decoration: none; border-bottom: 1px solid currentColor; justify-self: start; }
+.mapbox { grid-column: 1 / -1; border: 1px solid var(--linea); background: var(--crema); height: 380px; }
+.mapbox iframe { display: block; width: 100%; height: 100%; border: 0; filter: sepia(.25) saturate(.85); }
 form { display: grid; gap: 22px; background: #FBF8F3; border: 1px solid var(--linea); padding: 36px; align-content: start; min-width: 0; }
 .row2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .field { display: grid; gap: 6px; min-width: 0; }
@@ -208,6 +211,7 @@ footer.foot .legal { grid-column: 1 / -1; border-top: 1px solid rgba(237,229,216
   .pillars { grid-template-columns: minmax(0, 1fr); }
   .pillars div + div { padding-left: 0; border-left: 0; border-top: 1px solid rgba(237,229,216,.2); padding-top: 16px; }
   .row2 { grid-template-columns: minmax(0, 1fr); }
+  .mapbox { height: 300px; }
   form { padding: 24px 18px; }
   footer.foot .wrap { grid-template-columns: minmax(0, 1fr); gap: 32px; }
 }
@@ -300,6 +304,7 @@ footer.foot .legal { grid-column: 1 / -1; border-top: 1px solid rgba(237,229,216
       <p>Cuéntenos qué necesita y le preparamos una propuesta con tarifa y condiciones, sin compromiso.</p></div>
       <div class="item"><span class="lbl">Teléfono y WhatsApp</span><a class="v" id="cTel" href="#"></a></div>
       <div class="item"><span class="lbl">Correo</span><a class="v" id="cMail" href="#"></a></div>
+      <div class="item"><span class="lbl">Dirección</span><span class="v" id="cDir" style="font-size:19px"></span><a class="maplink" id="cRuta" href="#" target="_blank" rel="noopener">Cómo llegar</a></div>
       <div class="item"><span class="lbl">Atendemos</span><span id="cZona" style="font-size:17px"></span></div>
     </div>
     <form id="form" novalidate>
@@ -319,6 +324,7 @@ footer.foot .legal { grid-column: 1 / -1; border-top: 1px solid rgba(237,229,216
       </div>
       <p class="hint" id="formMsg">Se abrirá WhatsApp o su programa de correo con el mensaje ya escrito.</p>
     </form>
+    <div class="mapbox"><iframe id="map-frame" title="Mapa: ubicación de Jagumasa Vinos" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
   </div>
 </section>
 
@@ -326,7 +332,7 @@ footer.foot .legal { grid-column: 1 / -1; border-top: 1px solid rgba(237,229,216
   <div class="wrap">
     <div><img src="img/sello-crema.png" alt="Jagumasa Vinos"></div>
     <div><h4>Nosotros</h4><ul><li><a href="#nosotros">Quiénes somos</a></li><li><a href="#coleccion">Colección de vinos</a></li><li><a href="catalogo.pdf" download>Catálogo en PDF</a></li><li><a href="#contacto">Contacto</a></li></ul></div>
-    <div><h4>Contacto</h4><ul><li id="fTelF"></li><li id="fMailF"></li><li id="fZonaF"></li></ul></div>
+    <div><h4>Contacto</h4><ul><li id="fTelF"></li><li id="fMailF"></li><li id="fDirF"></li><li id="fZonaF"></li></ul></div>
     <div class="legal"><span>© 2026 Jagumasa Vinos</span><span>El consumo responsable es cosa de todos</span></div>
   </div>
 </footer>
@@ -354,7 +360,12 @@ const toggleSel = img => { sel = sel.includes(img) ? sel.filter(x => x !== img) 
 $("cTel").textContent = C.telefono; $("cTel").href = "https://wa.me/" + C.whatsapp;
 $("cMail").textContent = C.email; $("cMail").href = "mailto:" + C.email;
 $("cZona").textContent = C.zona;
-$("hWa").href = "https://wa.me/" + C.whatsapp; $("hMail").href = "mailto:" + C.email;
+const dirQ = encodeURIComponent(C.direccion + ", " + C.ciudad);
+$("cDir").innerHTML = esc(C.direccion) + "<br>" + esc(C.ciudad);
+$("cRuta").href = "https://www.google.com/maps/dir/?api=1&destination=" + dirQ;
+$("map-frame").src = "https://www.google.com/maps?q=" + dirQ + "&z=16&output=embed";
+$("fDirF").textContent = C.direccion + ", " + C.ciudad;
+$("hWa").href ="https://wa.me/" + C.whatsapp; $("hMail").href = "mailto:" + C.email;
 $("fTelF").textContent = C.telefono; $("fMailF").textContent = C.email; $("fZonaF").textContent = C.zona;
 
 // Cifras reales del catálogo
