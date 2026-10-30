@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Catálogo Jagumasa Vinos</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral+SC:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@400;500&display=swap">
+<style>
+:root { --burdeos:#3E0912; --crema:#EDE5D8; --papel:#F6F2EB; --granate:#7A1E2C; --corcho:#B08C5E; --tinta:#2B2426; --gris:#6F6462; --linea:#DDD2C2; }
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: #888; }
+body { font-family: Spectral, Georgia, serif; font-weight: 300; color: var(--tinta); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { width: 210mm; height: 297mm; background: var(--papel); position: relative; overflow: hidden; page-break-after: always; margin: 0 auto 8mm; padding: 18mm 18mm 20mm; display: flex; flex-direction: column; }
+@media print { html, body { background: none; } .page { margin: 0; } }
+.sc { font-family: "Spectral SC", Georgia, serif; font-weight: 400; letter-spacing: .12em; }
+.lbl { font-family: Jost, "Century Gothic", sans-serif; font-weight: 500; font-size: 7.5pt; letter-spacing: .26em; text-transform: uppercase; color: var(--granate); }
+.folio { position: absolute; bottom: 10mm; left: 18mm; right: 18mm; display: flex; justify-content: space-between; align-items: center; font-family: Jost, sans-serif; font-size: 7pt; letter-spacing: .24em; text-transform: uppercase; color: var(--gris); border-top: .4pt solid var(--linea); padding-top: 3mm; }
+.folio img { height: 6mm; }
+
+/* Portada */
+.cover { background: var(--burdeos); color: var(--crema); justify-content: center; align-items: center; text-align: center; padding: 0; }
+.cover::before { content: ""; position: absolute; inset: 10mm; border: .5pt solid rgba(237,229,216,.35); }
+.cover img { width: 92mm; }
+.cover h1 { font-family: "Spectral SC", serif; font-weight: 300; font-size: 26pt; letter-spacing: .22em; margin: 16mm 0 3mm; }
+.cover p { margin: 0; font-style: italic; font-size: 12pt; color: #D8C6B0; }
+.cover .yr { position: absolute; bottom: 18mm; font-family: Jost, sans-serif; font-size: 8pt; letter-spacing: .3em; color: #CDB79C; }
+
+/* Presentación + índice */
+.intro h2, .contact h2 { font-family: "Spectral SC", serif; font-weight: 300; font-size: 24pt; letter-spacing: .1em; color: var(--burdeos); margin: 4mm 0 8mm; line-height: 1.15; }
+.intro p { font-size: 11pt; line-height: 1.65; margin: 0 0 4mm; max-width: 140mm; }
+.intro .rule { width: 30mm; height: .8pt; background: var(--burdeos); margin: 10mm 0 8mm; }
+.toc { display: grid; gap: 0; margin-top: 2mm; }
+.toc div { display: grid; grid-template-columns: 1fr auto; align-items: baseline; padding: 3.2mm 0; border-bottom: .4pt solid var(--linea); }
+.toc .n { font-family: "Spectral SC", serif; font-size: 14pt; letter-spacing: .1em; color: var(--burdeos); }
+.toc .n small { font-family: Spectral, serif; font-style: italic; font-size: 9.5pt; letter-spacing: 0; color: var(--gris); margin-left: 4mm; }
+.toc .p { font-family: Jost, sans-serif; font-size: 9pt; color: var(--granate); font-variant-numeric: tabular-nums; }
+.howto { margin-top: auto; margin-bottom: 8mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6mm; font-size: 8.5pt; line-height: 1.5; color: var(--gris); }
+.howto b { display: block; font-family: Jost, sans-serif; font-weight: 500; font-size: 7pt; letter-spacing: .24em; text-transform: uppercase; color: var(--granate); margin-bottom: 1mm; }
+
+/* Portadilla de sección */
+.divider { background: var(--burdeos); color: var(--crema); justify-content: flex-end; padding-bottom: 40mm; }
+.divider .lbl { color: var(--corcho); }
+.divider h2 { font-family: "Spectral SC", serif; font-weight: 300; font-size: 44pt; letter-spacing: .1em; margin: 4mm 0 5mm; line-height: 1.05; }
+.divider p { font-style: italic; font-size: 13pt; color: #D8C6B0; margin: 0; max-width: 120mm; }
+.divider .count { margin-top: 12mm; font-family: Jost, sans-serif; font-size: 8pt; letter-spacing: .26em; text-transform: uppercase; color: #CDB79C; }
+.divider .iso { position: absolute; top: 18mm; right: 18mm; width: 14mm; opacity: .9; }
+.divider .folio { color: #CDB79C; border-color: rgba(237,229,216,.25); }
+
+/* Fichas */
+.head { display: flex; justify-content: space-between; align-items: baseline; border-bottom: .8pt solid var(--burdeos); padding-bottom: 3mm; margin-bottom: 4mm; }
+.head .t { font-family: "Spectral SC", serif; font-size: 13pt; letter-spacing: .14em; color: var(--burdeos); }
+.wines { flex: 1; display: grid; grid-template-rows: repeat(3, 1fr); gap: 0; margin-bottom: 8mm; }
+.wine { display: grid; grid-template-columns: 42mm 1fr; gap: 9mm; align-items: center; border-bottom: .4pt solid var(--linea); padding: 4mm 0; min-height: 0; }
+.wine:last-child { border-bottom: 0; }
+.wine .b { height: 100%; max-height: 72mm; display: grid; place-items: center; min-height: 0; }
+.wine .b img { max-height: 70mm; max-width: 40mm; object-fit: contain; mix-blend-mode: multiply; }
+.wine h3 { font-family: "Spectral SC", serif; font-weight: 400; font-size: 17pt; letter-spacing: .06em; color: var(--burdeos); margin: 1.5mm 0 1mm; line-height: 1.1; }
+.wine .o { font-style: italic; font-size: 10pt; color: var(--corcho); margin-bottom: 3mm; }
+.wine .d { font-size: 10pt; line-height: 1.55; margin: 0 0 3mm; }
+.wine dl { margin: 0; display: grid; grid-template-columns: 22mm 1fr; gap: 1mm 3mm; font-size: 8.5pt; line-height: 1.4; }
+.wine dt { font-family: Jost, sans-serif; font-weight: 500; font-size: 6.8pt; letter-spacing: .2em; text-transform: uppercase; color: var(--gris); padding-top: .6mm; }
+.wine dd { margin: 0; }
+.mag { display: inline-block; margin-left: 2mm; font-family: Jost, sans-serif; font-size: 6.5pt; letter-spacing: .2em; text-transform: uppercase; color: var(--granate); border: .5pt solid var(--granate); padding: .4mm 1.6mm; vertical-align: middle; }
+
+/* Contacto */
+.contact { background: var(--crema); justify-content: center; }
+.contact .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; margin-top: 6mm; }
+.contact .c b { display: block; font-family: Jost, sans-serif; font-weight: 500; font-size: 7.5pt; letter-spacing: .26em; text-transform: uppercase; color: var(--granate); margin-bottom: 1.5mm; }
+.contact .c span { font-size: 14pt; color: var(--burdeos); }
+.contact p { font-size: 11pt; line-height: 1.6; max-width: 140mm; }
+.contact .seal { width: 46mm; margin-bottom: 12mm; }
+.contact .note { margin-top: 16mm; font-size: 8.5pt; color: var(--gris); font-style: italic; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="vinos.js"></script>
+<script>
+const C = window.CONTACTO, T = window.TIPOS, V = window.VINOS;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const pad = n => String(n).padStart(2, "0");
+const PER = 3;
+let html = "", page = 1;
+const folio = (dark) => `<div class="folio"><span>Jagumasa Vinos · Catálogo</span><span>${pad(page)}</span></div>`;
+
+// Portada
+html += `<section class="page cover"><img src="img/sello-crema.png" alt=""><h1>Catálogo de vinos</h1><p>Selección de bodegas y denominaciones de origen</p><span class="yr">2026</span></section>`;
+page++;
+
+// Índice: calcular páginas
+const plan = []; let p = 4;
+for (const t of T) {
+  const n = V.filter(v => v.tipo === t.id).length;
+  plan.push({ ...t, n, start: p });
+  p += 1 + Math.ceil(n / PER);
+}
+const bodegas = [...new Set(V.map(v => v.bodega))].length;
+html += `<section class="page intro"><div class="lbl">Presentación</div><h2>Vinos con nombre<br>y origen</h2>
+<p>En Jagumasa seleccionamos y distribuimos vinos de bodegas que conocemos de cerca. Este catálogo reúne ${V.length} referencias de ${bodegas} bodegas, desde las Rías Baixas hasta Sanlúcar de Barrameda y Lanzarote.</p>
+<p>Están ordenados por tipo de vino, para que encuentre rápido lo que busca: espumosos, blancos, rosados, tintos y generosos. Dentro de cada tipo, los vinos de una misma bodega aparecen juntos.</p>
+<div class="rule"></div>
+<div class="toc">${plan.map(t => `<div><span class="n">${t.nombre}<small>${t.n} vinos</small></span><span class="p">${pad(t.start)}</span></div>`).join("")}
+<div><span class="n">Contacto</span><span class="p">${pad(p)}</span></div></div>
+<div class="howto"><div><b>Añadas</b>Según disponibilidad. Consúltenos la añada en curso de cada referencia.</div><div><b>Formatos</b>Botella de 75 cl. Los vinos marcados con «Mágnum» también están en 1,5 l.</div><div><b>Pedidos</b>Contacte con nosotros y le preparamos tarifa y condiciones.</div></div>
+${folio()}</section>`;
+page++;
+
+for (const t of plan) {
+  const list = V.filter(v => v.tipo === t.id);
+  html += `<section class="page divider"><img class="iso" src="img/isotipo-crema.png" alt=""><div class="lbl">Sección</div><h2>${t.nombre}</h2><p>${t.intro}</p><div class="count">${list.length} vinos · ${[...new Set(list.map(v => v.bodega))].length} bodegas</div>${folio()}</section>`;
+  page++;
+  for (let i = 0; i < list.length; i += PER) {
+    const chunk = list.slice(i, i + PER);
+    html += `<section class="page"><div class="head"><span class="t">${t.nombre}</span><span class="lbl">${[...new Set(chunk.map(v => v.origen.split(" · ").pop()))].join(" · ")}</span></div><div class="wines">` +
+      chunk.map(v => `<article class="wine"><div class="b"><img src="img/vinos/${pad(v.img)}.webp" alt=""></div><div>
+        <div class="lbl">${esc(v.bodega)}</div>
+        <h3>${esc(v.nombre)}${v.magnum ? '<span class="mag">Mágnum</span>' : ""}</h3>
+        <div class="o">${esc(v.origen)}</div>
+        <p class="d">${esc(v.desc)}</p>
+        <dl><dt>Uva</dt><dd>${esc(v.uva)}</dd>${v.crianza ? `<dt>Elaboración</dt><dd>${esc(v.crianza)}</dd>` : ""}${v.servicio ? `<dt>Servicio</dt><dd>${esc(v.servicio)}</dd>` : ""}</dl>
+      </div></article>`).join("") + `</div>${folio()}</section>`;
+    page++;
+  }
+}
+
+html += `<section class="page contact"><img class="seal" src="img/sello-burdeos.png" alt=""><div class="lbl">Contacto</div><h2>Hablemos de vino</h2>
+<p>Le asesoramos para elegir las referencias que mejor encajan con su carta o su tienda, y le preparamos tarifa y condiciones sin compromiso.</p>
+<div class="grid"><div class="c"><b>Teléfono y WhatsApp</b><span>${esc(C.telefono)}</span></div><div class="c"><b>Correo</b><span>${esc(C.email)}</span></div></div>
+<p class="note">${esc(C.zona)}.</p>${folio()}</section>`;
+
+document.getElementById("root").innerHTML = html;
+</script>
+</body>
+</html>

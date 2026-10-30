@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jagumasa Vinos</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Jagumasa Vinos, distribuidora de vinos. Catálogo de bodegas y denominaciones de origen, quiénes somos y contacto.">
+<link rel="icon" href="img/isotipo-burdeos.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral+SC:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@400;500&display=swap">
+<style>
+/* Layout: web de bodega clásica (cabecera centrada, hero oscuro, rejilla de botellas sobre papel). Un solo tema claro por fidelidad a la marca. */
+:root {
+  --burdeos: #3E0912;
+  --noche: #1D0A0D;
+  --crema: #EDE5D8;
+  --papel: #F6F2EB;
+  --granate: #7A1E2C;
+  --corcho: #A8804F;
+  --tinta: #2B2426;
+  --gris: #6F6462;
+  --linea: #DDD2C2;
+  --display: "Spectral SC", Georgia, serif;
+  --serif: "Spectral", Georgia, "Times New Roman", serif;
+  --sans: "Jost", "Century Gothic", "Helvetica Neue", Arial, sans-serif;
+  --gutter: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: 84px; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { margin: 0; background: var(--papel); color: var(--tinta); font-family: var(--serif); font-weight: 300; font-size: 17px; line-height: 1.7;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .3 0 0 0 0 .2 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--granate); outline-offset: 3px; }
+h1, h2, h3, h4 { font-family: var(--display); font-weight: 300; margin: 0; letter-spacing: .08em; line-height: 1.15; text-wrap: balance; }
+p { margin: 0; }
+.wrap { max-width: 1200px; margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter-r); }
+.lbl { font-family: var(--sans); font-weight: 500; font-size: 12px; letter-spacing: .26em; text-transform: uppercase; color: var(--granate); }
+.region { font-style: italic; color: var(--corcho); font-size: 15px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid var(--burdeos); background: var(--burdeos); color: var(--crema); font-family: var(--sans); font-weight: 500; font-size: 12.5px; letter-spacing: .22em; text-transform: uppercase; padding: 14px 26px; cursor: pointer; text-decoration: none; transition: background .2s, color .2s; }
+.btn:hover { background: var(--noche); }
+.btn.ghost { background: transparent; color: var(--burdeos); }
+.btn.ghost:hover { background: var(--burdeos); color: var(--crema); }
+.btn.light { background: transparent; color: var(--crema); border-color: rgba(237,229,216,.6); }
+.btn.light:hover { background: var(--crema); color: var(--burdeos); }
+
+/* Cabecera */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--papel); }
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(246,242,235,.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--linea); }
+.top .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 72px; }
+.top nav { display: flex; gap: 28px; }
+.top nav a { text-decoration: none; font-family: var(--sans); font-size: 12.5px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--tinta); padding: 6px 0; border-bottom: 1px solid transparent; }
+.top nav a:hover { border-color: var(--burdeos); color: var(--burdeos); }
+.top .brand img { height: 60px; width: auto; }
+.top .right { justify-self: end; display: flex; gap: 20px; align-items: center; }
+.sel-btn { background: none; border: 0; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: var(--sans); font-size: 12.5px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--burdeos); padding: 8px 0; }
+.sel-btn .n { min-width: 22px; height: 22px; border-radius: 11px; background: var(--burdeos); color: var(--crema); display: inline-grid; place-items: center; font-size: 11px; letter-spacing: 0; padding: 0 6px; }
+.hdr-btn { display: inline-flex; align-items: center; gap: 7px; text-decoration: none; font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--burdeos); border: 1px solid var(--burdeos); padding: 7px 12px; transition: background .2s, color .2s; }
+.hdr-btn:hover { background: var(--burdeos); color: var(--crema); }
+.menu-btn { display: none; background: none; border: 0; cursor: pointer; padding: 8px; color: var(--burdeos); }
+
+/* Hero */
+.hero { position: relative; background: var(--noche); color: var(--crema); overflow: hidden; }
+.hero::before { content: ""; position: absolute; inset: 0; background:
+  radial-gradient(120% 90% at 50% 120%, rgba(122,30,44,.55), transparent 60%),
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='48' viewBox='0 0 160 48'%3E%3Cpath d='M0 26 C 26 14, 54 14, 80 24 S 134 36, 160 24' fill='none' stroke='%23A8804F' stroke-opacity='.16' stroke-width='1.2'/%3E%3C/svg%3E"); background-size: auto, 160px 48px; }
+.hero .wrap { position: relative; padding-block: 96px 104px; text-align: center; display: grid; justify-items: center; gap: 22px; }
+.hero .kicker { font-family: var(--display); font-size: clamp(17px, 2.2vw, 24px); letter-spacing: .1em; color: #E2D3BF; max-width: 34ch; line-height: 1.4; }
+.hero h1 { font-size: clamp(40px, 6.4vw, 76px); letter-spacing: .08em; color: var(--crema); }
+.hero .rule { width: 72px; height: 1px; background: var(--corcho); }
+.hero .stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 36px; font-family: var(--sans); font-size: 12px; letter-spacing: .26em; text-transform: uppercase; color: #CDB79C; }
+.hero .stats b { font-family: var(--display); font-weight: 400; font-size: 20px; letter-spacing: .04em; color: var(--crema); margin-right: 6px; }
+.hero .ctas { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 6px; }
+
+/* Colección */
+section.block { padding-block: 88px; }
+.sec-head { text-align: center; display: grid; justify-items: center; gap: 14px; margin-bottom: 40px; }
+.sec-head h2 { font-size: clamp(32px, 4.4vw, 48px); color: var(--burdeos); }
+.sec-head p { max-width: 58ch; color: var(--gris); }
+.filters { display: grid; gap: 18px; justify-items: center; margin-bottom: 48px; }
+.tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 6px; }
+.tab { background: none; border: 0; border-bottom: 1px solid transparent; padding: 8px 12px; cursor: pointer; font-family: var(--display); font-size: 19px; letter-spacing: .08em; color: var(--gris); }
+.tab:hover { color: var(--burdeos); }
+.tab[aria-pressed="true"] { color: var(--burdeos); border-bottom-color: var(--burdeos); }
+.tab small { font-family: var(--sans); font-size: 11px; letter-spacing: .1em; margin-left: 4px; color: var(--corcho); }
+.subfilters { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: center; }
+.subfilters label { font-family: var(--sans); font-size: 11.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--gris); }
+.subfilters select { background: transparent; border: 0; border-bottom: 1px solid var(--linea); padding: 6px 26px 6px 4px; font-family: var(--serif); font-size: 16px; color: var(--tinta); cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%237A1E2C' stroke-width='1.3'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 6px center; }
+.group-title { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 16px; padding-top: 24px; border-bottom: 1px solid var(--linea); padding-bottom: 10px; margin-bottom: 6px; }
+.group-title h3 { font-size: 28px; color: var(--burdeos); }
+.group-title span { font-style: italic; color: var(--gris); font-size: 15px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 40px 24px; }
+.card { background: none; border: 0; padding: 0; text-align: center; cursor: pointer; display: grid; grid-template-rows: 300px auto; gap: 18px; justify-items: center; }
+.card .bottle { height: 300px; width: 100%; display: grid; place-items: end center; position: relative; }
+.card .bottle::after { content: ""; position: absolute; bottom: -6px; width: 46%; height: 10px; border-radius: 50%; background: radial-gradient(closest-side, rgba(43,36,38,.18), transparent); }
+.card img { max-height: 300px; max-width: 150px; object-fit: contain; mix-blend-mode: multiply; transition: transform .35s ease; }
+.card:hover img { transform: translateY(-6px); }
+.card .meta { display: grid; gap: 4px; justify-items: center; }
+.card h4 { font-size: 21px; letter-spacing: .07em; color: var(--tinta); line-height: 1.2; }
+.card:hover h4 { color: var(--burdeos); }
+.card .bod { font-family: var(--sans); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--gris); }
+.card .tag { font-family: var(--sans); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--granate); border: 1px solid var(--granate); padding: 1px 7px; margin-top: 2px; }
+.card .in { font-family: var(--sans); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--crema); background: var(--burdeos); padding: 2px 8px; }
+.empty { grid-column: 1 / -1; text-align: center; color: var(--gris); font-style: italic; padding: 40px 0; }
+
+/* Ficha */
+dialog { border: 0; padding: 0; max-width: min(920px, calc(100vw - 32px)); width: 100%; max-height: calc(100dvh - 32px); background: var(--papel); color: var(--tinta); box-shadow: 0 30px 80px -20px rgba(29,10,13,.5); }
+dialog::backdrop { background: rgba(29,10,13,.6); }
+.ficha { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); }
+.ficha .pic { background: var(--crema); display: grid; place-items: center; padding: 40px 24px; }
+.ficha .pic img { max-height: 460px; max-width: 220px; mix-blend-mode: multiply; }
+.ficha .txt { padding: 44px 40px 36px; display: grid; gap: 14px; align-content: start; min-width: 0; }
+.ficha h3 { font-size: clamp(28px, 3.4vw, 38px); color: var(--burdeos); }
+.ficha .desc { font-size: 17.5px; }
+.ficha dl { margin: 8px 0 0; display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 8px 16px; border-top: 1px solid var(--linea); padding-top: 16px; font-size: 15.5px; }
+.ficha dt { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--gris); padding-top: 4px; }
+.ficha dd { margin: 0; }
+.ficha .acts { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+.close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; border: 0; background: rgba(246,242,235,.9); cursor: pointer; display: grid; place-items: center; color: var(--burdeos); }
+
+/* Nosotros */
+.about { background: var(--burdeos); color: var(--crema); }
+.about .wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 72px; align-items: start; }
+.about .lbl { color: var(--corcho); }
+.about h2 { font-size: clamp(32px, 4.4vw, 50px); color: var(--crema); margin: 14px 0 26px; }
+.about .seal { width: min(280px, 70%); margin-top: 36px; opacity: .95; }
+.about .story { display: grid; gap: 20px; font-size: 18px; color: #E5D8C6; }
+.about .story p:first-child::first-letter { font-family: var(--display); float: left; font-size: 64px; line-height: .9; padding: 6px 10px 0 0; color: var(--crema); }
+.about blockquote { margin: 12px 0; padding: 4px 0 4px 26px; border-left: 1px solid var(--corcho); font-family: var(--display); font-size: clamp(22px, 2.6vw, 28px); line-height: 1.35; letter-spacing: .04em; color: var(--crema); }
+.pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin-top: 18px; border-top: 1px solid rgba(237,229,216,.2); }
+.pillars div { padding: 20px 18px 0 0; display: grid; gap: 6px; align-content: start; }
+.pillars div + div { padding-left: 18px; border-left: 1px solid rgba(237,229,216,.2); }
+.pillars h4 { font-size: 21px; color: var(--crema); }
+.pillars p { font-size: 15px; color: #CDB79C; line-height: 1.55; }
+.map { margin-top: 64px; grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 0; font-family: var(--display); font-size: 17px; letter-spacing: .08em; color: #CDB79C; }
+.map span { padding: 0 16px; border-left: 1px solid rgba(237,229,216,.2); }
+.map span:first-child { border-left: 0; }
+
+/* Contacto */
+.contact .wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 72px; }
+.contact h2 { font-size: clamp(32px, 4.4vw, 48px); color: var(--burdeos); margin: 14px 0 20px; }
+.contact .info { display: grid; gap: 22px; align-content: start; }
+.contact .item { display: grid; gap: 2px; padding-bottom: 16px; border-bottom: 1px solid var(--linea); }
+.contact .item .v { font-size: 21px; color: var(--burdeos); user-select: all; }
+.contact .item a.v { text-decoration: none; }
+form { display: grid; gap: 22px; background: #FBF8F3; border: 1px solid var(--linea); padding: 36px; align-content: start; min-width: 0; }
+.row2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.field { display: grid; gap: 6px; min-width: 0; }
+.field label { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--gris); }
+.field input, .field textarea, .field select { width: 100%; background: transparent; border: 0; border-bottom: 1px solid var(--linea); padding: 8px 2px; font-size: 17px; border-radius: 0; }
+.field textarea { min-height: 110px; resize: vertical; border: 1px solid var(--linea); padding: 10px 12px; }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--burdeos); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; min-height: 32px; align-items: center; }
+.chip { display: inline-flex; align-items: center; gap: 6px; background: var(--crema); border: 1px solid var(--linea); padding: 4px 6px 4px 12px; font-size: 15px; }
+.chip button { background: none; border: 0; cursor: pointer; color: var(--granate); font-size: 16px; line-height: 1; padding: 2px 6px; }
+.chips .none { font-style: italic; color: var(--gris); font-size: 15px; }
+.send { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.hint { font-size: 14px; color: var(--gris); font-style: italic; }
+.ok { font-size: 15px; color: var(--burdeos); }
+
+/* Pie */
+footer.foot { background: var(--noche); color: #CDB79C; }
+footer.foot .wrap { padding-block: 56px 40px; display: grid; grid-template-columns: auto 1fr 1fr; gap: 56px; align-items: start; }
+footer.foot img { width: 120px; }
+footer.foot h4 { font-size: 18px; letter-spacing: .14em; color: var(--crema); margin-bottom: 14px; }
+footer.foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 15.5px; }
+footer.foot a { text-decoration: none; }
+footer.foot a:hover { color: var(--crema); }
+footer.foot .legal { grid-column: 1 / -1; border-top: 1px solid rgba(237,229,216,.15); padding-top: 22px; font-family: var(--sans); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+
+@media (max-width: 960px) {
+  .about .wrap, .contact .wrap { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .about .seal { display: none; }
+  footer.foot .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  footer.foot .wrap > div:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 760px) {
+  .top .wrap { grid-template-columns: auto 1fr auto; height: 64px; }
+  .top .brand { order: -1; }
+  .top .brand img { height: 44px; }
+  .top nav { display: none; position: absolute; top: 64px; left: 0; right: 0; background: var(--papel); flex-direction: column; gap: 0; border-bottom: 1px solid var(--linea); padding: 8px var(--gutter-r) 16px var(--gutter); }
+  .top nav.open { display: flex; }
+  .top nav a { padding: 12px 0; }
+  .menu-btn { display: block; justify-self: end; }
+  .top .right { grid-column: 2; justify-self: end; }
+  .sel-btn .t, .hdr-btn .t { display: none; }
+  .top .right { gap: 8px; }
+  .hdr-btn { padding: 8px; }
+  .hero .wrap { padding-block: 64px 72px; }
+  section.block { padding-block: 64px; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 12px; }
+  .card { grid-template-rows: 230px auto; }
+  .card .bottle { height: 230px; }
+  .card img { max-height: 230px; max-width: 120px; }
+  .card h4 { font-size: 18px; }
+  .ficha { grid-template-columns: minmax(0, 1fr); }
+  .ficha .pic { padding: 28px; }
+  .ficha .pic img { max-height: 300px; }
+  .ficha .txt { padding: 28px 22px; }
+  .ficha dl { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .ficha dd { margin-bottom: 8px; }
+  .pillars { grid-template-columns: minmax(0, 1fr); }
+  .pillars div + div { padding-left: 0; border-left: 0; border-top: 1px solid rgba(237,229,216,.2); padding-top: 16px; }
+  .row2 { grid-template-columns: minmax(0, 1fr); }
+  form { padding: 24px 18px; }
+  footer.foot .wrap { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <nav id="nav" aria-label="Principal">
+      <a href="#coleccion">Colección</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="brand" href="#inicio" aria-label="Jagumasa Vinos, inicio"><img src="img/firma-burdeos.png" alt="Jagumasa Vinos"></a>
+    <div class="right">
+      <a class="hdr-btn" id="hWa" href="https://wa.me/34692552976" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3 1 2.6 1.1 2.8.1.2 1.9 2.9 4.6 4 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3Z"/></svg>
+        <span class="t">WhatsApp</span></a>
+      <a class="hdr-btn" id="hMail" href="mailto:jagumasa@hotmail.com" aria-label="Enviar un correo">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3.5 6 8.5 7 8.5-7"/></svg>
+        <span class="t">Correo</span></a>
+      <button class="sel-btn" id="selBtn" type="button" aria-label="Ver mi selección"><span class="t">Mi selección</span><span class="n" id="selCount">0</span></button>
+    </div>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menú" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <p class="kicker">Incorpore a su carta vinos de bodegas con nombre y origen</p>
+    <div class="rule"></div>
+    <h1>Colección de vinos</h1>
+    <div class="stats" id="stats"></div>
+    <div class="ctas">
+      <a class="btn light" href="#coleccion">Ver la colección</a>
+      <a class="btn light" href="catalogo.pdf" download>Descargar catálogo PDF</a>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="coleccion">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lbl">Nuestra colección</span>
+      <h2>Vinos por tipo</h2>
+      <p>Pulse sobre una botella para ver su ficha. Añada a «Mi selección» los vinos que le interesen y envíenos la lista desde el formulario de contacto.</p>
+    </div>
+    <div class="filters">
+      <div class="tabs" id="tabs" role="group" aria-label="Tipo de vino"></div>
+      <div class="subfilters">
+        <label for="fOrigen">Origen</label>
+        <select id="fOrigen"></select>
+        <label for="fBodega">Bodega</label>
+        <select id="fBodega"></select>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section class="block about" id="nosotros">
+  <div class="wrap">
+    <div>
+      <span class="lbl">Nosotros</span>
+      <h2>Detrás de cada botella hay un nombre</h2>
+      <img class="seal" src="img/sello-crema.png" alt="">
+    </div>
+    <div class="story">
+      <p>Jagumasa nace de una idea sencilla: que en cada mesa haya un vino con historia. Durante años hemos recorrido bodegas, hablado con quienes cuidan las viñas y probado añada tras añada para quedarnos solo con lo que de verdad nos convence.</p>
+      <p>No somos un almacén de etiquetas. Trabajamos con un grupo reducido de bodegas, muchas de ellas familiares, que hacen vino con la uva de su tierra: el albariño de las Rías Baixas, el godello de Valdeorras, el tempranillo de Samaniego, la malvasía que crece entre la ceniza de Lanzarote o la manzanilla que madura bajo el velo de flor en Sanlúcar.</p>
+      <blockquote>Elegimos cada vino como si fuera para nuestra propia carta.</blockquote>
+      <p>Por eso conocemos cada referencia que distribuimos y podemos recomendarla con criterio: qué pide cada plato, qué funciona por copas, qué merece guardarse unos años. A restaurantes, tiendas y clientes particulares les ofrecemos lo mismo: trato cercano, un asesoramiento honesto y el vino a tiempo.</p>
+      <div class="pillars">
+        <div><h4>Origen</h4><p>Cada vino se presenta por su bodega y su denominación.</p></div>
+        <div><h4>Criterio</h4><p>Una selección corta, probada y defendida por nosotros.</p></div>
+        <div><h4>Cercanía</h4><p>Hablamos con usted, no con un formulario.</p></div>
+      </div>
+    </div>
+    <div class="map" id="map"></div>
+  </div>
+</section>
+
+<section class="block contact" id="contacto">
+  <div class="wrap">
+    <div class="info">
+      <div><span class="lbl">Contacto</span><h2>Hablemos de vino</h2>
+      <p>Cuéntenos qué necesita y le preparamos una propuesta con tarifa y condiciones, sin compromiso.</p></div>
+      <div class="item"><span class="lbl">Teléfono y WhatsApp</span><a class="v" id="cTel" href="#"></a></div>
+      <div class="item"><span class="lbl">Correo</span><a class="v" id="cMail" href="#"></a></div>
+      <div class="item"><span class="lbl">Atendemos</span><span id="cZona" style="font-size:17px"></span></div>
+    </div>
+    <form id="form" novalidate>
+      <div class="row2">
+        <div class="field"><label for="fNombre">Nombre</label><input id="fNombre" name="nombre" autocomplete="name" required></div>
+        <div class="field"><label for="fNegocio">Restaurante, tienda o empresa</label><input id="fNegocio" name="negocio" autocomplete="organization"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="fTel">Teléfono</label><input id="fTel" name="telefono" type="tel" autocomplete="tel"></div>
+        <div class="field"><label for="fEmail">Correo</label><input id="fEmail" name="email" type="email" autocomplete="email"></div>
+      </div>
+      <div class="field"><label>Vinos de interés</label><div class="chips" id="chips"></div></div>
+      <div class="field"><label for="fMsg">Mensaje</label><textarea id="fMsg" name="mensaje" placeholder="Por ejemplo: busco dos blancos gallegos para la carta por copas."></textarea></div>
+      <div class="send">
+        <button class="btn" type="submit" data-via="whatsapp">Enviar por WhatsApp</button>
+        <button class="btn ghost" type="submit" data-via="email">Enviar por correo</button>
+      </div>
+      <p class="hint" id="formMsg">Se abrirá WhatsApp o su programa de correo con el mensaje ya escrito.</p>
+    </form>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div><img src="img/sello-crema.png" alt="Jagumasa Vinos"></div>
+    <div><h4>Nosotros</h4><ul><li><a href="#nosotros">Quiénes somos</a></li><li><a href="#coleccion">Colección de vinos</a></li><li><a href="catalogo.pdf" download>Catálogo en PDF</a></li><li><a href="#contacto">Contacto</a></li></ul></div>
+    <div><h4>Contacto</h4><ul><li id="fTelF"></li><li id="fMailF"></li><li id="fZonaF"></li></ul></div>
+    <div class="legal"><span>© 2026 Jagumasa Vinos</span><span>El consumo responsable es cosa de todos</span></div>
+  </div>
+</footer>
+
+<dialog id="dlg" aria-labelledby="dTitle">
+  <button class="close" type="button" id="dClose" aria-label="Cerrar ficha"><svg width="18" height="18" viewBox="0 0 18 18" stroke="currentColor" stroke-width="1.5"><path d="M3 3l12 12M15 3L3 15"/></svg></button>
+  <div class="ficha" id="ficha"></div>
+</dialog>
+
+<script src="vinos.js"></script>
+<script>
+const C = window.CONTACTO, TIPOS = window.TIPOS, VINOS = window.VINOS;
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const pad = n => String(n).padStart(2, "0");
+const shortOrigen = o => o.split(" · ").pop().replace(/^D\.O\.(Ca\.|Q\.)? /, "");
+
+// Selección (solo en este navegador)
+let sel = [];
+try { sel = JSON.parse(localStorage.getItem("jag-sel") || "[]"); } catch (e) {}
+const saveSel = () => { try { localStorage.setItem("jag-sel", JSON.stringify(sel)); } catch (e) {} renderSel(); };
+const toggleSel = img => { sel = sel.includes(img) ? sel.filter(x => x !== img) : [...sel, img]; saveSel(); render(); };
+
+// Contacto
+$("cTel").textContent = C.telefono; $("cTel").href = "https://wa.me/" + C.whatsapp;
+$("cMail").textContent = C.email; $("cMail").href = "mailto:" + C.email;
+$("cZona").textContent = C.zona;
+$("hWa").href = "https://wa.me/" + C.whatsapp; $("hMail").href = "mailto:" + C.email;
+$("fTelF").textContent = C.telefono; $("fMailF").textContent = C.email; $("fZonaF").textContent = C.zona;
+
+// Cifras reales del catálogo
+const bodegas = [...new Set(VINOS.map(v => v.bodega))];
+const origenes = [...new Set(VINOS.map(v => shortOrigen(v.origen)))];
+$("stats").innerHTML = `<span><b>${VINOS.length}</b>vinos</span><span><b>${bodegas.length}</b>bodegas</span><span><b>${origenes.length}</b>orígenes</span>`;
+$("map").innerHTML = origenes.map(o => `<span>${esc(o)}</span>`).join("");
+
+// Filtros
+let tipo = "todos", fO = "", fB = "";
+const tabsData = [{ id: "todos", nombre: "Todos" }, ...TIPOS];
+$("tabs").innerHTML = tabsData.map(t => `<button class="tab" type="button" data-t="${t.id}" aria-pressed="${t.id === tipo}">${t.nombre}<small>${t.id === "todos" ? VINOS.length : VINOS.filter(v => v.tipo === t.id).length}</small></button>`).join("");
+$("tabs").addEventListener("click", e => { const b = e.target.closest(".tab"); if (!b) return; tipo = b.dataset.t; render(); });
+const opts = (sel, list, all) => sel.innerHTML = `<option value="">${all}</option>` + list.sort((a, b) => a.localeCompare(b, "es")).map(x => `<option>${esc(x)}</option>`).join("");
+opts($("fOrigen"), [...origenes], "Todos los orígenes");
+opts($("fBodega"), [...bodegas], "Todas las bodegas");
+$("fOrigen").addEventListener("change", e => { fO = e.target.value; render(); });
+$("fBodega").addEventListener("change", e => { fB = e.target.value; render(); });
+
+function card(v) {
+  return `<button class="card" type="button" data-img="${v.img}" aria-label="Ver ficha de ${esc(v.nombre)}">
+    <div class="bottle"><img src="img/vinos/${pad(v.img)}.webp" alt="" loading="lazy"></div>
+    <div class="meta"><span class="region">${esc(v.origen.split(" · ").pop())}</span><h4>${esc(v.nombre)}</h4><span class="bod">${esc(v.bodega)}</span>
+    ${sel.includes(v.img) ? '<span class="in">En mi selección</span>' : v.magnum ? '<span class="tag">También en mágnum</span>' : ""}</div></button>`;
+}
+function render() {
+  document.querySelectorAll(".tab").forEach(b => b.setAttribute("aria-pressed", b.dataset.t === tipo));
+  const list = VINOS.filter(v => (tipo === "todos" || v.tipo === tipo) && (!fO || shortOrigen(v.origen) === fO) && (!fB || v.bodega === fB));
+  let html = "";
+  for (const t of TIPOS) {
+    const g = list.filter(v => v.tipo === t.id);
+    if (!g.length) continue;
+    if (tipo === "todos") html += `<div class="group-title"><h3>${t.nombre}</h3><span>${t.intro}</span></div>`;
+    html += g.map(card).join("");
+  }
+  $("grid").innerHTML = html || `<p class="empty">No hay vinos con esa combinación. Pruebe a quitar algún filtro.</p>`;
+}
+$("grid").addEventListener("click", e => { const c = e.target.closest(".card"); if (c) openFicha(+c.dataset.img); });
+
+// Ficha
+const dlg = $("dlg");
+function openFicha(img) {
+  const v = VINOS.find(x => x.img === img); if (!v) return;
+  const t = TIPOS.find(x => x.id === v.tipo);
+  const inSel = sel.includes(img);
+  $("ficha").innerHTML = `<div class="pic"><img src="img/vinos/${pad(v.img)}.webp" alt="Botella de ${esc(v.nombre)}"></div>
+    <div class="txt"><span class="lbl">${esc(v.bodega)} · ${t.nombre}</span><h3 id="dTitle">${esc(v.nombre)}</h3><span class="region">${esc(v.origen)}</span>
+    <p class="desc">${esc(v.desc)}</p>
+    <dl><dt>Uva</dt><dd>${esc(v.uva)}</dd>${v.crianza ? `<dt>Elaboración</dt><dd>${esc(v.crianza)}</dd>` : ""}${v.servicio ? `<dt>Servicio</dt><dd>${esc(v.servicio)}</dd>` : ""}<dt>Formato</dt><dd>75 cl${v.magnum ? " · Mágnum 1,5 l" : ""}</dd></dl>
+    <div class="acts"><button class="btn" type="button" id="dSel">${inSel ? "Quitar de mi selección" : "Añadir a mi selección"}</button><a class="btn ghost" href="#contacto" id="dAsk">Consultar este vino</a></div></div>`;
+  $("dSel").onclick = () => { toggleSel(img); openFicha(img); };
+  $("dAsk").onclick = () => { if (!sel.includes(img)) toggleSel(img); dlg.close(); };
+  if (!dlg.open) dlg.showModal();
+}
+$("dClose").onclick = () => dlg.close();
+dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+
+// Selección en el formulario
+function renderSel() {
+  $("selCount").textContent = sel.length;
+  $("chips").innerHTML = sel.length ? sel.map(i => { const v = VINOS.find(x => x.img === i); return v ? `<span class="chip">${esc(v.nombre)}<button type="button" data-rm="${i}" aria-label="Quitar ${esc(v.nombre)}">×</button></span>` : ""; }).join("")
+    : `<span class="none">Aún no ha añadido vinos. Puede hacerlo desde la ficha de cada uno.</span>`;
+}
+$("chips").addEventListener("click", e => { const b = e.target.closest("[data-rm]"); if (b) toggleSel(+b.dataset.rm); });
+$("selBtn").onclick = () => document.getElementById("contacto").scrollIntoView();
+
+// Envío: compone el mensaje y abre WhatsApp o el correo
+$("form").addEventListener("submit", e => {
+  e.preventDefault();
+  const f = e.target, via = e.submitter && e.submitter.dataset.via || "whatsapp";
+  if (!f.nombre.value.trim()) { $("formMsg").textContent = "Escriba su nombre para que sepamos con quién hablamos."; $("formMsg").className = "ok"; f.nombre.focus(); return; }
+  const vinos = sel.map(i => VINOS.find(x => x.img === i)).filter(Boolean).map(v => `- ${v.nombre} (${v.bodega})`).join("\n");
+  const txt = [`Hola, soy ${f.nombre.value.trim()}${f.negocio.value.trim() ? " de " + f.negocio.value.trim() : ""}.`,
+    f.mensaje.value.trim(), vinos ? `Me interesan estos vinos:\n${vinos}` : "",
+    [f.telefono.value.trim() && "Teléfono: " + f.telefono.value.trim(), f.email.value.trim() && "Correo: " + f.email.value.trim()].filter(Boolean).join("\n")
+  ].filter(Boolean).join("\n\n");
+  const url = via === "email"
+    ? `mailto:${C.email}?subject=${encodeURIComponent("Consulta desde la web" + (f.negocio.value.trim() ? " · " + f.negocio.value.trim() : ""))}&body=${encodeURIComponent(txt)}`
+    : `https://wa.me/${C.whatsapp}?text=${encodeURIComponent(txt)}`;
+  const a = document.createElement("a"); a.href = url; a.target = "_blank"; a.rel = "noopener"; document.body.appendChild(a); a.click(); a.remove();
+  $("formMsg").className = "ok";
+  $("formMsg").innerHTML = via === "email" ? `Hemos preparado el correo. Si no se ha abierto, escríbanos a <b>${esc(C.email)}</b>.` : `Hemos preparado el mensaje de WhatsApp. Si no se ha abierto, llámenos al <b>${esc(C.telefono)}</b>.`;
+});
+
+// Menú móvil
+$("menuBtn").onclick = () => { const o = $("nav").classList.toggle("open"); $("menuBtn").setAttribute("aria-expanded", o); };
+$("nav").addEventListener("click", e => { if (e.target.tagName === "A") { $("nav").classList.remove("open"); $("menuBtn").setAttribute("aria-expanded", false); } });
+
+render(); renderSel();
+</script>
+</body>
+</html>
